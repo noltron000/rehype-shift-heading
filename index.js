@@ -15,6 +15,10 @@ import {shiftHeading} from 'hast-util-shift-heading'
  * @type {import('unified').Plugin<[Options], Root>}
  */
 export default function rehypeShiftHeading(options) {
+  if (options?.shift === 0) {
+    return (tree) => undefined
+  }
+  
   if (!options || !options.shift) {
     throw new Error('Missing required `shift` in options')
   }
